@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Himel Debnath | Data Scientist Aspirant & AI/ML Engineer</title>
+  <meta name="description" content="Portfolio of Himel Debnath — Data Scientist Aspirant, AI & ML Engineer specializing in Medical Image Segmentation (PyTorch), Data Analytics & Power BI (DAX)." />
+  <meta name="keywords" content="Himel Debnath, Data Scientist, Machine Learning, Deep Learning, Medical Imaging, Brain Metastasis Segmentation, Power BI, PyTorch, IUB" />
+  <meta name="author" content="Himel Debnath" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-slate-950 text-slate-100 transition-colors duration-300 min-h-screen selection:bg-brand-500 selection:text-white">
+
+  <!-- BACKGROUND DECORATIONS -->
+  <div id="mesh-bg" class="fixed inset-0 pointer-events-none -z-10 mesh-bg-dark opacity-70 transition-opacity"></div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/80 dark:bg-slate-950/80 light:bg-white/80 border-b border-slate-800/80 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo / Identity -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-500 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          HD
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight leading-tight group-hover:text-indigo-400 transition-colors">Himel Debnath</span>
+          <span class="text-xs text-slate-400 font-mono">Data Science & AI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Items -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-indigo-400 transition-colors">About</a>
+        <a href="#research" class="hover:text-indigo-400 transition-colors">Research & Thesis</a>
+        <a href="#projects" class="hover:text-indigo-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-indigo-400 transition-colors">Skills</a>
+        <a href="#education" class="hover:text-indigo-400 transition-colors">Education</a>
+        <a href="#contact" class="hover:text-indigo-400 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Controls: Theme Toggle & CV Action -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Dark/Light Theme Toggle -->
+        <button id="theme-toggle" aria-label="Toggle Theme" class="p-2.5 rounded-lg border border-slate-800 hover:border-slate-700 bg-slate-900/80 text-slate-300 hover:text-white transition-all">
+          <i id="theme-icon" data-lucide="sun" class="w-4 h-4"></i>
+        </button>
+
+        <!-- View Resume Button -->
+        <a href="resume.html" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg border border-slate-700 hover:border-slate-600 bg-slate-900/60 hover:bg-slate-800 text-slate-200 transition-all shadow-sm">
+          <i data-lucide="file-text" class="w-3.5 h-3.5 text-indigo-400"></i>
+          <span>Interactive Resume</span>
+        </a>
+
+        <!-- Download CV Direct -->
+        <a href="Himel_Debnath_CV.pdf" download="Himel_Debnath_CV.pdf" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/20 hover:shadow-indigo-600/30 transition-all">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>CV (PDF)</span>
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="mobile-menu-btn" aria-label="Open Menu" class="md:hidden p-2 rounded-lg border border-slate-800 text-slate-300 hover:text-white">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-3">
+      <a href="#about" class="block text-sm font-medium text-slate-300 hover:text-indigo-400 py-1 mobile-link">About</a>
+      <a href="#research" class="block text-sm font-medium text-slate-300 hover:text-indigo-400 py-1 mobile-link">Research & Thesis</a>
+      <a href="#projects" class="block text-sm font-medium text-slate-300 hover:text-indigo-400 py-1 mobile-link">Projects</a>
+      <a href="#skills" class="block text-sm font-medium text-slate-300 hover:text-indigo-400 py-1 mobile-link">Skills</a>
+      <a href="#education" class="block text-sm font-medium text-slate-300 hover:text-indigo-400 py-1 mobile-link">Education</a>
+      <a href="#contact" class="block text-sm font-medium text-slate-300 hover:text-indigo-400 py-1 mobile-link">Contact</a>
+      <div class="pt-2 border-t border-slate-800 flex flex-col gap-2">
+        <a href="resume.html" target="_blank" class="flex items-center justify-center gap-2 text-xs font-semibold py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200">
+          <i data-lucide="file-text" class="w-3.5 h-3.5 text-indigo-400"></i> View Interactive Resume
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-24">
+
+    <!-- HERO SECTION -->
+    <section id="home" class="pt-6 sm:pt-12 pb-6 space-y-8">
+      
+      <!-- Status Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span id="profile-availability">Available for Data Science, ML & Data Analyst Roles</span>
+      </div>
+
+      <!-- Main Headline -->
+      <div class="space-y-4 max-w-4xl">
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+          Hi, I'm <span class="bg-gradient-to-r from-indigo-400 via-sky-300 to-emerald-400 bg-clip-text text-transparent">Himel Debnath</span>.
+        </h1>
+        <p class="text-xl sm:text-2xl text-slate-300 font-medium">
+          Data Scientist Aspirant · AI & ML Engineer · Medical Imaging Researcher
+        </p>
+        <p class="text-base sm:text-lg text-slate-400 leading-relaxed max-w-3xl pt-2" id="profile-tagline">
+          Bridging mathematical foundations and modern deep learning — specializing in medical imaging segmentation, data analytics, and interactive business intelligence.
+        </p>
+      </div>
+
+      <!-- Hero Call-to-Actions -->
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm shadow-lg shadow-indigo-600/25 transition-all">
+          <span>Explore Projects</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+
+        <a href="Himel_Debnath_CV.pdf" download="Himel_Debnath_CV.pdf" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/80 hover:bg-slate-900 text-slate-200 font-medium text-sm transition-all">
+          <i data-lucide="file-down" class="w-4 h-4 text-indigo-400"></i>
+          <span>Download CV</span>
+        </a>
+
+        <button id="terminal-toggle-btn" class="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/40 hover:bg-slate-900/80 text-slate-400 hover:text-slate-200 font-mono text-xs transition-all">
+          <i data-lucide="terminal" class="w-4 h-4 text-emerald-400"></i>
+          <span>Terminal View</span>
+        </button>
+      </div>
+
+      <!-- Quick Social & Info Badges -->
+      <div class="flex flex-wrap items-center gap-4 text-sm text-slate-400 pt-2 border-t border-slate-800/60">
+        <div class="flex items-center gap-1.5">
+          <i data-lucide="map-pin" class="w-4 h-4 text-slate-500"></i>
+          <span>Dhaka, Bangladesh</span>
+        </div>
+        <div class="hidden sm:inline text-slate-700">•</div>
+        <a href="https://github.com/himel7009" target="_blank" class="flex items-center gap-1.5 hover:text-indigo-400 transition-colors">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>github.com/himel7009</span>
+        </a>
+        <div class="hidden sm:inline text-slate-700">•</div>
+        <a href="https://www.kaggle.com/debnathhimel" target="_blank" class="flex items-center gap-1.5 hover:text-sky-400 transition-colors">
+          <i data-lucide="award" class="w-4 h-4 text-sky-400"></i>
+          <span>kaggle.com/debnathhimel</span>
+        </a>
+        <div class="hidden sm:inline text-slate-700">•</div>
+        <button id="copy-email-hero" class="flex items-center gap-1.5 hover:text-emerald-400 transition-colors group">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>www.himel4200@gmail.com</span>
+          <i data-lucide="copy" class="w-3.5 h-3.5 opacity-60 group-hover:opacity-100"></i>
+        </button>
+      </div>
+
+      <!-- INTERACTIVE TERMINAL COMPONENT (LINUX & WINDOWS CLI FLUENCY) -->
+      <div id="interactive-terminal" class="hidden transition-all duration-300 mt-6">
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/90 font-mono text-xs overflow-hidden shadow-2xl terminal-window">
+          <!-- Terminal Header -->
+          <div class="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-800">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+              <span class="ml-2 text-slate-400 font-semibold text-[11px]">himel@debnath-workstation: ~ (Linux & Windows CLI)</span>
+            </div>
+            <div class="text-slate-500 text-[11px]">bash 5.2.15</div>
+          </div>
+          <!-- Terminal Content -->
+          <div class="p-5 space-y-3 text-slate-300">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400">himel@workstation:~$</span>
+              <span class="text-white">whoami</span>
+            </div>
+            <div class="text-slate-400 pl-4">
+              &gt; Himel Debnath — Data Scientist Aspirant | Independent University Bangladesh (CGPA: 3.48)
+            </div>
+
+            <div class="flex items-center gap-2 pt-1">
+              <span class="text-emerald-400">himel@workstation:~$</span>
+              <span class="text-white">python -c "import torch; print(f'PyTorch: {torch.__version__} | CUDA: Ready')"</span>
+            </div>
+            <div class="text-slate-400 pl-4">
+              &gt; PyTorch: 2.x | Medical Image Segmentation &amp; CNNs Initialized
+            </div>
+
+            <div class="flex items-center gap-2 pt-1">
+              <span class="text-emerald-400">himel@workstation:~$</span>
+              <span class="text-white">cat thesis_status.json</span>
+            </div>
+            <div class="text-slate-400 pl-4 text-indigo-300">
+              { "topic": "Brain Metastasis Segmentation", "architecture": "Encoder-Decoder / PyTorch", "progress": "Coursework Complete, Thesis Active" }
+            </div>
+
+            <div class="flex items-center gap-2 pt-1">
+              <span class="text-emerald-400">himel@workstation:~$</span>
+              <span class="text-white">status --career</span>
+            </div>
+            <div class="text-emerald-300 pl-4 font-semibold">
+              ✔ Ready for Data Science, Machine Learning &amp; Business Intelligence roles.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- METRICS & SNAPSHOT GRID -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4" id="stats-container">
+      <!-- Injected from data.js -->
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+          <i data-lucide="user" class="w-5 h-5"></i>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Professional Summary</h2>
+      </div>
+
+      <div class="p-6 sm:p-8 rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-sm space-y-4">
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed" id="profile-summary">
+          <!-- Dynamically filled -->
+        </p>
+
+        <!-- Highlights Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-800/80">
+          <div class="flex items-start gap-3">
+            <div class="mt-1 p-1.5 rounded-lg bg-sky-500/10 text-sky-400">
+              <i data-lucide="brain" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold text-white">Medical Imaging &amp; AI</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Hands-on experience in segmentation and classification with PyTorch &amp; OpenCV.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="mt-1 p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
+              <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold text-white">Business Intelligence &amp; BI</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Interactive Power BI dashboarding with complex DAX calculations and KPI modeling.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="mt-1 p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">
+              <i data-lucide="terminal" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold text-white">Linux &amp; CLI Workflows</h4>
+              <p class="text-xs text-slate-400 mt-0.5">Fluent in command-line scripting, environment configuration, Git, and Kaggle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH & THESIS SPOTLIGHT -->
+    <section id="research" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+            <i data-lucide="microscope" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Research &amp; Thesis Spotlight</h2>
+            <p class="text-xs sm:text-sm text-slate-400">Deep Learning applied to Neuroimaging and Medical Diagnostics</p>
+          </div>
+        </div>
+        <span class="inline-flex items-center gap-1.5 text-xs font-mono text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20 self-start sm:self-auto">
+          <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> All Coursework Completed
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="research-container">
+        <!-- Injected from data.js -->
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="space-y-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+            <i data-lucide="folder-git-2" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Applied Projects &amp; Analytics</h2>
+            <p class="text-xs sm:text-sm text-slate-400">Explore interactive dashboards, machine learning systems, and deployed tools</p>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative w-full md:w-72">
+          <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
+          <input 
+            type="text" 
+            id="project-search" 
+            placeholder="Search PyTorch, DAX, Power BI..." 
+            class="w-full pl-9 pr-4 py-2 rounded-xl text-xs bg-slate-900 border border-slate-800 focus:border-indigo-500 focus:outline-none text-slate-200 placeholder:text-slate-500 transition-colors"
+          />
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center gap-2 border-b border-slate-800 pb-3" id="category-tabs">
+        <button data-cat="all" class="cat-tab px-4 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white transition-all shadow-sm">
+          All Projects (6)
+        </button>
+        <button data-cat="bi" class="cat-tab px-4 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all">
+          Data Analytics &amp; BI
+        </button>
+        <button data-cat="ai" class="cat-tab px-4 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all">
+          Deep Learning &amp; AI
+        </button>
+        <button data-cat="apps" class="cat-tab px-4 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all">
+          Applied AI &amp; Systems
+        </button>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS MATRIX -->
+    <section id="skills" class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Technical Skills &amp; Stack</h2>
+          <p class="text-xs sm:text-sm text-slate-400">Proficiency across data manipulation, deep learning frameworks, and analytics software</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="skills-grid">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+          <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Education &amp; Academic Timeline</h2>
+          <p class="text-xs sm:text-sm text-slate-400">Foundational computer science, advanced mathematics, and research credentials</p>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8 rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-sm space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div class="space-y-1">
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+              Undergraduate Degree
+            </span>
+            <h3 class="text-xl sm:text-2xl font-bold text-white pt-1">
+              B.Sc. in Computer Science &amp; Engineering (CSE)
+            </h3>
+            <p class="text-sm sm:text-base font-medium text-slate-300">
+              Independent University, Bangladesh (IUB) · Dhaka, Bangladesh
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:items-end">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-sm font-semibold text-white">
+              <span class="text-slate-400">CGPA:</span>
+              <span class="text-emerald-400 font-bold text-base">3.48</span>
+              <span class="text-slate-500 text-xs">/ 4.00</span>
+            </div>
+            <span class="text-xs text-slate-400 mt-1">Graduation Expected: Dec 2026</span>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-800 pt-4 space-y-3">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider font-mono">Academic Highlights &amp; Coursework</h4>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
+              <span><strong>Coursework Complete:</strong> Successfully concluded all course requirements with honors in advanced computational topics.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
+              <span><strong>Active Thesis Research:</strong> Working on deep-learning-based Brain Metastasis segmentation in neuroimaging under faculty supervision.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>
+              <span><strong>Key Curricular Focus:</strong> Machine Learning, Artificial Intelligence, Mobile Application Development, Database Systems, Linear Algebra, Probability &amp; Statistics.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & CONNECT SECTION -->
+    <section id="contact" class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+          <i data-lucide="send" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Get in Touch</h2>
+          <p class="text-xs sm:text-sm text-slate-400">Looking for a motivated Data Scientist, Machine Learning Engineer, or Data Analyst? Let's talk.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Contact Card: Direct Email -->
+        <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-4 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Direct Email</h3>
+            <p class="text-xs text-slate-400">Always responsive for job opportunities, research collaborations, and project inquiries.</p>
+            <div class="pt-2 text-sm font-mono text-slate-200 break-all select-all">
+              www.himel4200@gmail.com
+            </div>
+          </div>
+          <div class="flex gap-2 pt-2">
+            <a href="mailto:www.himel4200@gmail.com" class="flex-1 text-center py-2 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold text-white transition-all">
+              Send Email
+            </a>
+            <button id="copy-email-btn" class="py-2 px-3 rounded-lg border border-slate-700 hover:bg-slate-800 text-xs font-semibold text-slate-300 transition-all flex items-center justify-center gap-1.5" title="Copy to clipboard">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
+            </button>
+          </div>
+        </div>
+
+        <!-- Contact Card: Phone / WhatsApp -->
+        <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-4 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+              <i data-lucide="phone" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Phone &amp; Mobile</h3>
+            <p class="text-xs text-slate-400">Available for calls and direct professional correspondence.</p>
+            <div class="pt-2 text-sm font-mono text-slate-200 select-all">
+              +880 1789-156469
+            </div>
+          </div>
+          <div class="flex gap-2 pt-2">
+            <a href="tel:+8801789156469" class="flex-1 text-center py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white transition-all">
+              Call Direct
+            </a>
+            <button id="copy-phone-btn" class="py-2 px-3 rounded-lg border border-slate-700 hover:bg-slate-800 text-xs font-semibold text-slate-300 transition-all flex items-center justify-center gap-1.5" title="Copy to clipboard">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy
+            </button>
+          </div>
+        </div>
+
+        <!-- Contact Card: Profiles & Profiles -->
+        <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-4 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center">
+              <i data-lucide="globe" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">Online Profiles</h3>
+            <p class="text-xs text-slate-400">Inspect public source code, Kaggle notebooks, and live analytics dashboards.</p>
+            <div class="pt-2 space-y-1.5 text-xs">
+              <a href="https://github.com/himel7009" target="_blank" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
+                <i data-lucide="github" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>GitHub: @himel7009</span>
+              </a>
+              <a href="https://www.kaggle.com/debnathhimel" target="_blank" class="flex items-center gap-2 text-slate-300 hover:text-sky-400 transition-colors">
+                <i data-lucide="award" class="w-3.5 h-3.5 text-sky-400"></i>
+                <span>Kaggle: @debnathhimel</span>
+              </a>
+              <div class="flex items-center gap-2 text-slate-400">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i>
+                <span>Dhaka, Bangladesh</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-2">
+            <a href="Himel_Debnath_CV.pdf" download="Himel_Debnath_CV.pdf" class="w-full text-center py-2 px-3 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-xs font-semibold text-indigo-300 transition-all flex items-center justify-center gap-2">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i> Download Full Resume
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-20 border-t border-slate-800/80 bg-slate-950/60 py-10 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="flex items-center gap-2">
+        <span>© 2026 <strong>Himel Debnath</strong>. All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#home" class="hover:text-white transition-colors">Back to top ↑</a>
+        <a href="https://github.com/himel7009" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+        <a href="https://www.kaggle.com/debnathhimel" target="_blank" class="hover:text-white transition-colors">Kaggle</a>
+        <a href="resume.html" target="_blank" class="hover:text-white transition-colors">Resume</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE PROJECT DETAILS MODAL -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 modal-animate shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button id="modal-close-btn" class="absolute top-5 right-5 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Content Header -->
+      <div class="space-y-1.5 pr-8">
+        <span id="modal-category" class="inline-flex px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20"></span>
+        <h3 id="modal-title" class="text-2xl font-bold text-white pt-1"></h3>
+        <p id="modal-subtitle" class="text-sm text-slate-300 font-medium"></p>
+      </div>
+
+      <!-- Description -->
+      <p id="modal-description" class="text-sm text-slate-400 leading-relaxed"></p>
+
+      <!-- Highlights -->
+      <div class="space-y-2 pt-2 border-t border-slate-800">
+        <h4 class="text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono">Key Highlights &amp; Architecture</h4>
+        <ul id="modal-highlights" class="space-y-2 text-xs text-slate-300"></ul>
+      </div>
+
+      <!-- Tags -->
+      <div class="space-y-2 pt-2 border-t border-slate-800">
+        <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider font-mono">Technologies &amp; Libraries</h4>
+        <div id="modal-tags" class="flex flex-wrap gap-1.5"></div>
+      </div>
+
+      <!-- Links Footer -->
+      <div id="modal-links" class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-800"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 border border-slate-700 text-white text-xs font-medium px-4 py-3 rounded-xl shadow-xl flex items-center gap-2">
+    <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

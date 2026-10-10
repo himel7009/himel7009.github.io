@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Himel Debnath — Curriculum Vitae / Resume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    @media print {
+      body { background: white !important; color: black !important; }
+      .no-print { display: none !important; }
+      .page-break { page-break-before: always; }
+      a { text-decoration: none !important; color: inherit !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased py-8 px-4 sm:px-6">
+
+  <!-- Printable Resume Container -->
+  <div class="max-w-4xl mx-auto space-y-6">
+
+    <!-- Top Action Bar (hidden on print) -->
+    <div class="no-print flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-slate-200">
+      <a href="index.html" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-indigo-600 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Portfolio
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="Himel_Debnath_CV.pdf" download="Himel_Debnath_CV.pdf" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 transition-all">
+          <i data-lucide="file-down" class="w-4 h-4 text-indigo-600"></i> Download PDF File
+        </a>
+        <button onclick="window.print()" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-sm transition-all">
+          <i data-lucide="printer" class="w-4 h-4"></i> Print / Save as PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- Resume Document Sheet -->
+    <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-sm border border-slate-200 space-y-8">
+      
+      <!-- HEADER -->
+      <div class="border-b border-slate-200 pb-6 space-y-2">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+          <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">HIMEL DEBNATH</h1>
+          <span class="text-sm font-semibold text-indigo-600 uppercase tracking-wider font-mono">Data Scientist Aspirant</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono">
+          <span>Dhaka, Bangladesh</span>
+          <span>•</span>
+          <a href="mailto:www.himel4200@gmail.com" class="hover:text-indigo-600">www.himel4200@gmail.com</a>
+          <span>•</span>
+          <span>+880 1789-156469</span>
+          <span>•</span>
+          <a href="https://github.com/himel7009" target="_blank" class="hover:text-indigo-600">github.com/himel7009</a>
+          <span>•</span>
+          <a href="https://www.kaggle.com/debnathhimel" target="_blank" class="hover:text-indigo-600">kaggle.com/debnathhimel</a>
+        </p>
+      </div>
+
+      <!-- PROFESSIONAL SUMMARY -->
+      <section class="space-y-2">
+        <h2 class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-mono border-b border-slate-200 pb-1">
+          Professional Summary
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify">
+          Final-year Computer Science student at Independent University, Bangladesh (IUB) with a strong foundation in data analysis, machine learning, and deep learning, currently focused on turning theoretical knowledge into practical implementations. Experienced in working with Python-based data tools including Pandas, NumPy, Matplotlib, and Seaborn, as well as Excel and Power BI for data analysis and visualization. Familiar with classical machine learning using Scikit-Learn and actively developing hands-on experience with deep learning using PyTorch and TensorFlow, including medical imaging, image segmentation, and classification projects. Seeking a Data Scientist or Data Analyst role where I can apply my analytical, programming, and machine learning skills to real-world data and business problems while continuing to grow as an AI/ML professional.
+        </p>
+      </section>
+
+      <!-- EDUCATION -->
+      <section class="space-y-3">
+        <h2 class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-mono border-b border-slate-200 pb-1">
+          Education
+        </h2>
+        <div class="flex justify-between items-baseline">
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">B.Sc. in Computer Science &amp; Engineering (CSE)</h3>
+            <p class="text-xs text-slate-600">Independent University, Bangladesh (IUB) — Dhaka, Bangladesh</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-bold text-emerald-700 font-mono">CGPA 3.48 / 4.00</span>
+            <p class="text-[11px] text-slate-500">Graduation Expected: Dec 2026</p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-600 italic">
+          Coursework Complete. Currently working on Undergraduate Thesis: Brain Metastasis Segmentation (Medical Imaging &amp; Deep Learning).
+        </p>
+      </section>
+
+      <!-- TECHNICAL SKILLS -->
+      <section class="space-y-3">
+        <h2 class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-mono border-b border-slate-200 pb-1">
+          Technical Skills
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs text-slate-700">
+          <div>
+            <span class="font-bold text-slate-900">Languages &amp; Querying:</span> Python, SQL, Dart, JavaScript, Bash
+          </div>
+          <div>
+            <span class="font-bold text-slate-900">Machine Learning &amp; DL:</span> PyTorch, TorchVision, OpenCV, Scikit-Learn, TensorFlow
+          </div>
+          <div>
+            <span class="font-bold text-slate-900">Data Analysis &amp; Manipulation:</span> Pandas, NumPy, Scikit-Learn, SQL
+          </div>
+          <div>
+            <span class="font-bold text-slate-900">Data Visualization &amp; BI:</span> Power BI (DAX, dashboard design), Matplotlib, Seaborn, Excel
+          </div>
+          <div>
+            <span class="font-bold text-slate-900">Software &amp; Mobile:</span> Flutter, Firebase (Auth &amp; Firestore), Tailwind CSS, Chart.js
+          </div>
+          <div>
+            <span class="font-bold text-slate-900">Tools &amp; Environments:</span> Linux &amp; Windows CLI, Git &amp; GitHub, Kaggle, Conda, Jupyter, Overleaf
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS & APPLIED ANALYSIS -->
+      <section class="space-y-5">
+        <h2 class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-mono border-b border-slate-200 pb-1">
+          Projects &amp; Applied Analysis
+        </h2>
+
+        <!-- Project 1 -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between items-baseline">
+            <h3 class="text-sm font-bold text-slate-900">Food Delivery Analytics Dashboard</h3>
+            <span class="text-xs text-indigo-600 font-mono">Business Intelligence &amp; Visualization</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-mono">
+            Power BI, DAX, Data Modeling, Excel
+          </p>
+          <ul class="list-disc list-outside pl-4 text-xs text-slate-700 space-y-1">
+            <li>Built an interactive Power BI dashboard on a simulated food-delivery operations dataset (modeled on Foodpanda), designing DAX measures to surface order volumes, revenue trends, and delivery-time KPIs.</li>
+            <li>Structured the report into drill-down views by geographical regions, timeframes, and restaurant categories so non-technical stakeholders could filter and interpret metrics without querying raw data directly.</li>
+          </ul>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between items-baseline">
+            <h3 class="text-sm font-bold text-slate-900">Binary Classification of Alzheimer's Disease</h3>
+            <span class="text-xs text-indigo-600 font-mono">University Research Study</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-mono">
+            PyTorch, Custom CNN, DenseNet121, ResNet50, Scikit-Learn, Matplotlib
+          </p>
+          <ul class="list-disc list-outside pl-4 text-xs text-slate-700 space-y-1">
+            <li>Compared three modeling architectures — a Custom CNN, DenseNet121, and ResNet50 — on an Alzheimer's classification neuroimaging dataset, evaluating accuracy, precision, recall, and F1 metrics.</li>
+            <li>Documented trade-offs between model complexity, feature reuse, and generalization performance across the architectures in a comparative analytical report.</li>
+          </ul>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between items-baseline">
+            <h3 class="text-sm font-bold text-slate-900">Calculus Navigator — Adaptive Learning Platform</h3>
+            <span class="text-xs text-indigo-600 font-mono">Full-Stack &amp; AI Integration</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-mono">
+            Gemini API, JavaScript, Tailwind CSS, Firebase Auth &amp; Firestore, Chart.js
+          </p>
+          <ul class="list-disc list-outside pl-4 text-xs text-slate-700 space-y-1">
+            <li>Designed a gamified web platform to help high-school students learn calculus through interactive tools including a skill-tree roadmap, graphing sandbox, and an AI-powered tutor using Google's Gemini API.</li>
+            <li>Used Chart.js to visualize student mastery data and Firestore to persist multi-user progress across practice modules.</li>
+          </ul>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between items-baseline">
+            <h3 class="text-sm font-bold text-slate-900">Teacher Assistant App — Course &amp; Student Activity Manager</h3>
+            <span class="text-xs text-indigo-600 font-mono">Mobile Application (CSC464)</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-mono">
+            Flutter, Dart, Firebase Core, Cloud Firestore, Provider Pattern
+          </p>
+          <ul class="list-disc list-outside pl-4 text-xs text-slate-700 space-y-1">
+            <li>Collaborated in a 3-person team to build a Flutter mobile app for teaching assistants to manage course schedules and track student attendance records.</li>
+            <li>Implemented Cloud Firestore integration, configured asynchronous streams, and engineered the Add Student form and Course editing modal flows.</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- THESIS HIGHLIGHT -->
+      <section class="space-y-2 border-t border-slate-200 pt-4">
+        <h2 class="text-xs font-bold text-indigo-600 uppercase tracking-widest font-mono">
+          Undergraduate Thesis Research
+        </h2>
+        <div class="text-xs text-slate-700 space-y-1">
+          <p><strong>Title:</strong> Deep Learning for Brain Metastasis Segmentation in Neuroimaging</p>
+          <p><strong>Focus:</strong> Medical image preprocessing, slice intensity normalization, lesion boundary delineation with PyTorch &amp; OpenCV, evaluated using Dice Similarity Coefficient (DSC) and IoU metrics.</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
