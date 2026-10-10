@@ -111,7 +111,7 @@ const portfolioData = {
       tags: ["Flutter", "Dart", "Cloud Firestore", "Firebase Core", "Provider State Management"],
       links: [
         { label: "Watch App Demo Video", url: "https://drive.google.com/file/d/1G1IcH8gaJnuZxVCczSTRPqU6w17uP8X4/view", icon: "play", primary: true },
-        { label: "Forked GitHub Repo", url: "https://github.com/himel7009/Flutter_CSC464_Flutter_Final_Project-Group5-Section1-P005", icon: "github" }
+        { label: "GitHub Repository", url: "https://github.com/himel7009/Teacher-Assistant-Flutter-App", icon: "github" }
       ]
     },
     {
