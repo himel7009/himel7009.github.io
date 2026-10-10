@@ -1,5 +1,5 @@
 // Portfolio Application Logic for Himel Debnath
-// Clean Minimalist Modern Architecture
+// Clean Minimalist Modern Architecture with Robust Dual-Theme Support
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyButtons();
   initMobileNav();
 
-  // Re-render Lucide icons
+  // Initial icon rendering
   if (window.lucide) {
     window.lucide.createIcons();
   }
@@ -26,19 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================================================== */
 function initTheme() {
   const toggleBtn = document.getElementById('theme-toggle');
-  const themeIcon = document.getElementById('theme-icon');
   const meshBg = document.getElementById('mesh-bg');
   const html = document.documentElement;
 
   // Check saved theme or system preference
   const savedTheme = localStorage.getItem('theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+  
+  // Default to dark mode if no saved preference, or use saved preference
+  let isDark = savedTheme !== null ? savedTheme === 'dark' : true;
 
   applyTheme(isDark);
 
   if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
+    toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       const willBeDark = !html.classList.contains('dark');
       applyTheme(willBeDark);
       localStorage.setItem('theme', willBeDark ? 'dark' : 'light');
@@ -50,26 +52,30 @@ function initTheme() {
       html.classList.add('dark');
       html.classList.remove('light');
       if (meshBg) {
-        meshBg.classList.add('mesh-bg-dark');
-        meshBg.classList.remove('mesh-bg-light');
+        meshBg.className = 'fixed inset-0 pointer-events-none -z-10 mesh-bg-dark opacity-70 transition-opacity';
       }
-      if (themeIcon) {
-        themeIcon.setAttribute('data-lucide', 'sun');
+      if (toggleBtn) {
+        toggleBtn.innerHTML = '<i data-lucide="sun" class="w-4 h-4 text-amber-400"></i>';
       }
     } else {
       html.classList.remove('dark');
       html.classList.add('light');
       if (meshBg) {
-        meshBg.classList.add('mesh-bg-light');
-        meshBg.classList.remove('mesh-bg-dark');
+        meshBg.className = 'fixed inset-0 pointer-events-none -z-10 mesh-bg-light opacity-70 transition-opacity';
       }
-      if (themeIcon) {
-        themeIcon.setAttribute('data-lucide', 'moon');
+      if (toggleBtn) {
+        toggleBtn.innerHTML = '<i data-lucide="moon" class="w-4 h-4 text-slate-700"></i>';
       }
     }
+
     if (window.lucide) {
       window.lucide.createIcons();
     }
+
+    // Refresh active category tab styling for new theme
+    const activeTab = document.querySelector('.cat-tab.bg-indigo-600');
+    const cat = activeTab ? activeTab.getAttribute('data-cat') : 'all';
+    setActiveCategoryTab(cat);
   }
 }
 
@@ -88,11 +94,11 @@ function renderStats() {
   if (!container || !portfolioData.stats) return;
 
   container.innerHTML = portfolioData.stats.map(stat => `
-    <div class="p-5 rounded-2xl border border-slate-800 bg-slate-900/30 backdrop-blur-sm card-hover flex flex-col justify-between">
-      <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">${stat.label}</span>
+    <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/40 shadow-sm backdrop-blur-sm card-hover flex flex-col justify-between">
+      <span class="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">${stat.label}</span>
       <div class="mt-2">
-        <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">${stat.value}</div>
-        <div class="text-xs text-slate-400 mt-1 truncate">${stat.sub}</div>
+        <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">${stat.value}</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 truncate font-medium">${stat.sub}</div>
       </div>
     </div>
   `).join('');
@@ -105,27 +111,27 @@ function renderResearch() {
   const container = document.getElementById('research-container');
   if (!container || !portfolioData.research) return;
 
-  container.innerHTML = portfolioData.research.map((item, idx) => `
-    <div class="p-6 sm:p-7 rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-sm card-hover flex flex-col justify-between space-y-5">
+  container.innerHTML = portfolioData.research.map((item) => `
+    <div class="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-sm backdrop-blur-sm card-hover flex flex-col justify-between space-y-5">
       <div class="space-y-3">
         <div class="flex items-center justify-between gap-2">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
             ${item.badge}
           </span>
-          <span class="text-xs font-mono text-slate-400">${item.period}</span>
+          <span class="text-xs font-mono text-slate-500 dark:text-slate-400">${item.period}</span>
         </div>
 
-        <h3 class="text-xl font-bold text-white tracking-tight leading-snug">${item.title}</h3>
-        <p class="text-xs font-medium text-indigo-300 font-mono">${item.subtitle}</p>
-        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${item.overview}</p>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight leading-snug">${item.title}</h3>
+        <p class="text-xs font-medium text-indigo-600 dark:text-indigo-300 font-mono">${item.subtitle}</p>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.overview}</p>
 
         <div class="space-y-1.5 pt-2">
-          <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider font-mono">Key Highlights:</h4>
-          <ul class="space-y-1.5 text-xs text-slate-300">
+          <h4 class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider font-mono">Key Highlights:</h4>
+          <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
             ${item.contributions.map(c => `
               <li class="flex items-start gap-2">
-                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-indigo-400 mt-0.5 shrink-0"></i>
+                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 mt-0.5 shrink-0"></i>
                 <span>${c}</span>
               </li>
             `).join('')}
@@ -133,10 +139,10 @@ function renderResearch() {
         </div>
       </div>
 
-      <div class="pt-4 border-t border-slate-800/80">
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80">
         <div class="flex flex-wrap gap-1.5">
           ${item.tags.map(tag => `
-            <span class="px-2 py-0.5 rounded-md text-[11px] font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">
+            <span class="px-2 py-0.5 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60">
               ${tag}
             </span>
           `).join('')}
@@ -144,6 +150,10 @@ function renderResearch() {
       </div>
     </div>
   `).join('');
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 }
 
 /* ==========================================================================
@@ -171,10 +181,10 @@ function renderProjects(category = 'all', searchQuery = '') {
 
   if (filtered.length === 0) {
     grid.innerHTML = `
-      <div class="col-span-full py-16 text-center text-slate-400 space-y-3">
-        <i data-lucide="search-x" class="w-10 h-10 mx-auto text-slate-500"></i>
+      <div class="col-span-full py-16 text-center text-slate-500 dark:text-slate-400 space-y-3">
+        <i data-lucide="search-x" class="w-10 h-10 mx-auto text-slate-400 dark:text-slate-500"></i>
         <p class="text-base font-medium">No projects matched your search criteria.</p>
-        <button id="reset-filters-btn" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 underline">
+        <button id="reset-filters-btn" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
           Reset filters
         </button>
       </div>
@@ -192,39 +202,39 @@ function renderProjects(category = 'all', searchQuery = '') {
   }
 
   grid.innerHTML = filtered.map(p => `
-    <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-sm card-hover flex flex-col justify-between space-y-5 group cursor-pointer" onclick="openProjectModal('${p.id}')">
+    <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-sm backdrop-blur-sm card-hover flex flex-col justify-between space-y-5 group cursor-pointer" onclick="openProjectModal('${p.id}')">
       <div class="space-y-3">
         
         <!-- Category & Featured Header -->
         <div class="flex items-center justify-between gap-2">
-          <span class="inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+          <span class="inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
             ${p.categoryLabel}
           </span>
           ${p.featured ? `
-            <span class="inline-flex items-center gap-1 text-[10px] font-mono font-medium text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20">
-              <i data-lucide="star" class="w-3 h-3 fill-amber-400"></i> Featured
+            <span class="inline-flex items-center gap-1 text-[10px] font-mono font-medium text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-400/20">
+              <i data-lucide="star" class="w-3 h-3 fill-amber-500 dark:fill-amber-400"></i> Featured
             </span>
           ` : ''}
         </div>
 
         <!-- Title & Subtitle -->
         <div>
-          <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors leading-snug">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug">
             ${p.title}
           </h3>
-          <p class="text-xs text-indigo-300/80 font-mono mt-1">${p.subtitle}</p>
+          <p class="text-xs text-indigo-600 dark:text-indigo-300/80 font-mono mt-1">${p.subtitle}</p>
         </div>
 
         <!-- Description -->
-        <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
           ${p.description}
         </p>
 
         <!-- Highlights Preview -->
-        <ul class="space-y-1 text-xs text-slate-300 pt-1">
+        <ul class="space-y-1 text-xs text-slate-700 dark:text-slate-300 pt-1">
           ${p.highlights.slice(0, 2).map(h => `
             <li class="flex items-start gap-1.5">
-              <span class="text-indigo-400 text-sm leading-none">•</span>
+              <span class="text-indigo-600 dark:text-indigo-400 text-sm leading-none">•</span>
               <span class="line-clamp-2">${h}</span>
             </li>
           `).join('')}
@@ -232,10 +242,10 @@ function renderProjects(category = 'all', searchQuery = '') {
       </div>
 
       <!-- Footer: Tags & Action Links -->
-      <div class="space-y-3 pt-4 border-t border-slate-800/80">
+      <div class="space-y-3 pt-4 border-t border-slate-200 dark:border-slate-800/80">
         <div class="flex flex-wrap gap-1">
           ${p.tags.slice(0, 4).map(tag => `
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800/80 text-slate-300">
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-transparent">
               ${tag}
             </span>
           `).join('')}
@@ -249,13 +259,13 @@ function renderProjects(category = 'all', searchQuery = '') {
         <div class="flex items-center justify-between gap-2 pt-1" onclick="event.stopPropagation()">
           <div class="flex items-center gap-2">
             ${p.links.map(l => `
-              <a href="${l.url}" target="_blank" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg ${l.primary ? 'bg-indigo-600 hover:bg-indigo-500 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-200'} transition-all" title="${l.label}">
+              <a href="${l.url}" target="_blank" class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg ${l.primary ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 dark:border-transparent'} transition-all" title="${l.label}">
                 <i data-lucide="${l.icon}" class="w-3 h-3"></i>
                 <span class="text-[11px]">${l.label}</span>
               </a>
             `).join('')}
           </div>
-          <button onclick="openProjectModal('${p.id}')" class="text-xs text-slate-400 hover:text-white transition-colors" title="View details">
+          <button onclick="openProjectModal('${p.id}')" class="text-xs text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors" title="View details">
             <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
           </button>
         </div>
@@ -286,7 +296,7 @@ function setActiveCategoryTab(cat) {
     if (btn.getAttribute('data-cat') === cat) {
       btn.className = 'cat-tab px-4 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white transition-all shadow-sm';
     } else {
-      btn.className = 'cat-tab px-4 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-all';
+      btn.className = 'cat-tab px-4 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 dark:text-slate-300 dark:hover:text-white dark:border-slate-800 transition-all';
     }
   });
 }
@@ -310,20 +320,20 @@ function renderSkills() {
   if (!grid || !portfolioData.skills) return;
 
   grid.innerHTML = portfolioData.skills.map(group => `
-    <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-sm space-y-4">
+    <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-sm backdrop-blur-sm space-y-4">
       <div>
-        <h3 class="text-lg font-bold text-white">${group.category}</h3>
-        <p class="text-xs text-slate-400 mt-0.5">${group.description}</p>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white">${group.category}</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">${group.description}</p>
       </div>
 
-      <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800/80">
+      <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-200 dark:border-slate-800/80">
         ${group.items.map(item => `
-          <div class="p-2.5 rounded-xl bg-slate-800/50 border border-slate-700/50 flex items-center justify-between gap-2">
+          <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 dark:bg-slate-800/50 dark:border-slate-700/50 flex items-center justify-between gap-2">
             <div class="flex items-center gap-2 min-w-0">
-              <i data-lucide="${item.icon || 'check'}" class="w-3.5 h-3.5 text-indigo-400 shrink-0"></i>
-              <span class="text-xs font-medium text-slate-200 truncate">${item.name}</span>
+              <i data-lucide="${item.icon || 'check'}" class="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0"></i>
+              <span class="text-xs font-medium text-slate-800 dark:text-slate-200 truncate">${item.name}</span>
             </div>
-            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-900 text-slate-400 shrink-0">
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white border border-slate-200 dark:border-transparent dark:bg-slate-900 text-slate-500 dark:text-slate-400 shrink-0">
               ${item.level}
             </span>
           </div>
@@ -331,6 +341,10 @@ function renderSkills() {
       </div>
     </div>
   `).join('');
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 }
 
 /* ==========================================================================
@@ -372,21 +386,21 @@ function openProjectModal(projectId) {
   const highlightsContainer = document.getElementById('modal-highlights');
   highlightsContainer.innerHTML = project.highlights.map(h => `
     <li class="flex items-start gap-2">
-      <i data-lucide="check-circle" class="w-3.5 h-3.5 text-indigo-400 mt-0.5 shrink-0"></i>
+      <i data-lucide="check-circle" class="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 mt-0.5 shrink-0"></i>
       <span>${h}</span>
     </li>
   `).join('');
 
   const tagsContainer = document.getElementById('modal-tags');
   tagsContainer.innerHTML = project.tags.map(t => `
-    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-200 border border-slate-700">
+    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
       ${t}
     </span>
   `).join('');
 
   const linksContainer = document.getElementById('modal-links');
   linksContainer.innerHTML = project.links.map(l => `
-    <a href="${l.url}" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold ${l.primary ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/20' : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'} transition-all">
+    <a href="${l.url}" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold ${l.primary ? 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/20' : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700'} transition-all">
       <i data-lucide="${l.icon}" class="w-3.5 h-3.5"></i>
       <span>${l.label}</span>
     </a>
@@ -409,7 +423,6 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-// Global modal trigger for inline onclick
 window.openProjectModal = openProjectModal;
 
 /* ==========================================================================
@@ -420,7 +433,8 @@ function initTerminalToggle() {
   const term = document.getElementById('interactive-terminal');
   if (!btn || !term) return;
 
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
     term.classList.toggle('hidden');
     if (!term.classList.contains('hidden')) {
       term.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

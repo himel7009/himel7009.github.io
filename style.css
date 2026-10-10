@@ -49,9 +49,10 @@ code, pre, .font-mono {
   border-color: rgba(99, 102, 241, 0.4);
 }
 
+html:not(.dark) .card-hover:hover,
 .light .card-hover:hover {
   box-shadow: 0 12px 28px -8px rgba(15, 23, 42, 0.08);
-  border-color: rgba(99, 102, 241, 0.35);
+  border-color: rgba(99, 102, 241, 0.4);
 }
 
 /* Gradient mesh background */
