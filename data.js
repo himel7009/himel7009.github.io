@@ -14,14 +14,14 @@ const portfolioData = {
     github: "https://github.com/himel7009",
     kaggle: "https://www.kaggle.com/debnathhimel",
     resumePdf: "Himel_Debnath_CV.pdf",
-    summary: `Final-year Computer Science & Engineering student at Independent University, Bangladesh (IUB) with a 3.48 CGPA. Completed all academic coursework and currently conducting undergraduate thesis research in deep-learning-based Brain Metastasis segmentation. Experienced across the full data lifecycle: from exploratory data analysis and Power BI dashboard development with custom DAX, to training CNN architectures (DenseNet, ResNet) in PyTorch, developing cross-platform applications with Flutter, and operating across Linux and Windows CLI environments.`
+    summary: `Final-year Computer Science & Engineering student at Independent University, Bangladesh (IUB). Completed all academic coursework and currently conducting undergraduate thesis research in deep-learning-based Brain Metastasis segmentation. Experienced across the full data lifecycle: from SQL database querying and data modeling, exploratory data analysis and Power BI dashboard development with custom DAX, to training CNN architectures (DenseNet, ResNet) in PyTorch, developing cross-platform applications with Flutter, and operating across Linux and Windows CLI environments.`
   },
 
   stats: [
-    { label: "Academic CGPA", value: "3.48", sub: "IUB CSE (Coursework Complete)" },
+    { label: "Academic Track", value: "B.Sc. CSE", sub: "Coursework Complete · IUB" },
     { label: "Research Focus", value: "Medical AI", sub: "Brain Metastasis & Alzheimer's" },
     { label: "Core Projects", value: "6+", sub: "ML, BI & Full-Stack Systems" },
-    { label: "Tool Stack", value: "PyTorch & BI", sub: "DAX, Pandas, OpenCV, SQL" }
+    { label: "Core Tool Stack", value: "SQL & Python", sub: "PyTorch, Power BI & Pandas" }
   ],
 
   research: [
@@ -172,6 +172,18 @@ const portfolioData = {
 
   skills: [
     {
+      category: "Languages & Database Querying",
+      description: "Database querying, structured data extraction, and programming languages",
+      items: [
+        { name: "SQL (Queries, Joins, Aggregations)", level: "Advanced", icon: "database" },
+        { name: "Python (Pandas, NumPy, OOP)", level: "Advanced", icon: "code" },
+        { name: "PostgreSQL & Relational DBs", level: "Proficient", icon: "server" },
+        { name: "Bash & Shell Scripting", level: "Proficient", icon: "terminal" },
+        { name: "Dart (Flutter)", level: "Proficient", icon: "smartphone" },
+        { name: "JavaScript & HTML/CSS", level: "Proficient", icon: "globe" }
+      ]
+    },
+    {
       category: "Data Science & Machine Learning",
       description: "Core algorithms, deep neural network architectures, and statistical modeling",
       items: [
@@ -187,35 +199,24 @@ const portfolioData = {
       category: "Data Analysis & Business Intelligence",
       description: "Extracting actionable insights, developing metrics, and executive reporting",
       items: [
+        { name: "SQL (Data Extraction & ETL)", level: "Advanced", icon: "database" },
         { name: "Power BI (DAX & Dashboards)", level: "Advanced", icon: "bar-chart-2" },
         { name: "Python (Pandas, NumPy)", level: "Advanced", icon: "code" },
-        { name: "SQL (Querying & Joins)", level: "Proficient", icon: "database" },
         { name: "Matplotlib & Seaborn", level: "Proficient", icon: "pie-chart" },
         { name: "Excel & Google Sheets", level: "Advanced", icon: "file-text" },
         { name: "Exploratory Data Analysis", level: "Advanced", icon: "search" }
       ]
     },
     {
-      category: "Software & Mobile Development",
-      description: "Building production tools, user interfaces, and mobile applications",
+      category: "Software, Tools & Environments",
+      description: "Applied development, cloud platforms, operating systems, and developer tooling",
       items: [
-        { name: "Flutter & Dart", level: "Proficient", icon: "smartphone" },
-        { name: "JavaScript & HTML5/CSS3", level: "Proficient", icon: "globe" },
-        { name: "Tailwind CSS", level: "Proficient", icon: "palette" },
+        { name: "Flutter & Mobile Apps", level: "Proficient", icon: "smartphone" },
         { name: "Firebase (Auth & Firestore)", level: "Proficient", icon: "zap" },
-        { name: "Gemini API Integration", level: "Proficient", icon: "sparkles" }
-      ]
-    },
-    {
-      category: "Tools, Systems & Workflow",
-      description: "Operating systems, version control, and scientific research environments",
-      items: [
         { name: "Linux & Windows CLI", level: "Advanced", icon: "terminal" },
         { name: "Git & GitHub", level: "Proficient", icon: "git-branch" },
-        { name: "Kaggle", level: "Active", icon: "award" },
         { name: "Conda & Jupyter", level: "Advanced", icon: "book-open" },
-        { name: "Overleaf & LaTeX", level: "Proficient", icon: "edit-3" },
-        { name: "Technical Documentation", level: "Advanced", icon: "check-circle" }
+        { name: "Kaggle & LaTeX", level: "Active", icon: "award" }
       ]
     }
   ],
@@ -226,8 +227,6 @@ const portfolioData = {
     location: "Dhaka, Bangladesh",
     period: "Graduation Expected: December 2026",
     status: "Completed Coursework · Concluding Thesis",
-    cgpa: "3.48",
-    cgpaMax: "4.00",
     highlights: [
       "Completed all degree coursework with strong performance across Data Science, Algorithms, and Mathematics.",
       "Undergraduate Thesis focus: Deep learning for Brain Metastasis medical image segmentation.",
